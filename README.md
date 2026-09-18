@@ -1,1 +1,1 @@
-# HellasProshop
+# PLU Trainer
