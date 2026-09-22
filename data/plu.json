@@ -22,5 +22,9 @@
   { "code": "4682", "name": "Paprika Orange", "image": "paprikaorange.jpg" },
   { "code": "4688", "name": "Paprika Röd", "image": "paprikarod.webp" },
   { "code": "4710", "name": "Paprika Grön", "image": "paprikagron.jpg" },
-  { "code": "4680", "name": "Paprika Gul", "image": "paprikagul.jpg" }
+  { "code": "4680", "name": "Paprika Gul", "image": "paprikagul.jpg" },
+  { "code": "4728", "name": "Fast Potatis", "image": "fastpotatis.webp" },
+  { "code": "4724", "name": "Mjölig Potatis", "image": "mjoligpotatis.webp" },
+  { "code": "94030", "name": "Kiwi Eko", "image": "kiwiEko.jpg" },
+  { "code": "3174", "name": "Apelsin", "image": "apelsin.jpg" }
 ]
