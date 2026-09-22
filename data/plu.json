@@ -1,0 +1,26 @@
+[
+  { "code": "4011", "name": "Banan", "image": "banan.webp" },
+  { "code": "94232", "name": "Banan EKO", "image": "bananEko.webp" },
+  {
+    "code": "51361",
+    "name": "Lösviktsgodis",
+    "image": "lösgodis.png"
+  },
+  { "code": "51351", "name": "Naturgodis", "image": "naturgodis.webp" },
+  { "code": "4304", "name": "Citron", "image": "citron.webp" },
+  { "code": "94304", "name": "Citron EKO", "image": "citronEko.jpg" },
+  { "code": "4030", "name": "Kiwi", "image": "kiwi.webp" },
+  { "code": "3264", "name": "Vitlök", "image": "vitlok.webp" },
+  { "code": "3180", "name": "Clementin", "image": "Clementin.jpg" },
+  { "code": "4666", "name": "Gul lök", "image": "gullok.webp" },
+  { "code": "4446", "name": "Granatäpple", "image": "granatapple.webp" },
+  {
+    "code": "4433",
+    "name": "Annanas Extra Sweet",
+    "image": "annanassweet.webp"
+  },
+  { "code": "4682", "name": "Paprika Orange", "image": "paprikaorange.jpg" },
+  { "code": "4688", "name": "Paprika Röd", "image": "paprikarod.webp" },
+  { "code": "4710", "name": "Paprika Grön", "image": "paprikagron.jpg" },
+  { "code": "4680", "name": "Paprika Gul", "image": "paprikagul.jpg" }
+]
