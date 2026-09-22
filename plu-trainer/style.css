@@ -1,0 +1,211 @@
+:root {
+  --bg: #f2f4ec;
+  --panel: #ffffff;
+  --ink: #22291f;
+  --muted: #6b7263;
+  --green: #37592f;
+  --green-bright: #5c8a3a;
+  --red: #b23a24;
+  --line: #d8dccb;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header.site-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+header.site-head h1 {
+  font-family: "Space Grotesk", -apple-system, sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--green);
+}
+
+header.site-head nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  border-bottom: 1px solid transparent;
+}
+
+header.site-head nav a:hover,
+header.site-head nav a:focus-visible {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px 60px;
+}
+
+/* ---- Drill screen ---- */
+
+.stats-bar {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 28px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.stats-bar strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  width: min(420px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.card.flash-correct { background: #eaf4e5; border-color: var(--green-bright); }
+.card.flash-wrong { background: #f8e9e5; border-color: var(--red); }
+
+.produce-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #e9ebe0;
+  margin-bottom: 22px;
+}
+
+.guess-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+#guess-input {
+  flex: 1;
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+
+#guess-input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+#pass-btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+#pass-btn:hover, #pass-btn:focus-visible {
+  border-color: var(--red);
+  color: var(--red);
+  outline: none;
+}
+
+.reveal {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: var(--red);
+  min-height: 1.2em;
+}
+
+.reveal strong { color: var(--ink); }
+
+/* ---- Overview screen ---- */
+
+.overview-wrap {
+  width: min(720px, 94vw);
+}
+
+.overview-search {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--panel);
+  font-size: 1rem;
+  margin-bottom: 18px;
+}
+
+.overview-search:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.item-tile {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.item-tile img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #e9ebe0;
+  display: block;
+}
+
+.item-tile .meta {
+  padding: 8px 10px 10px;
+}
+
+.item-tile .code {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.item-tile .name {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
