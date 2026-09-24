@@ -42,7 +42,7 @@ function nextItem() {
   revealEl.textContent = "";
   cardEl.classList.remove("flash-correct", "flash-wrong");
   inputEl.disabled = false;
-  passBtn.textContent = "Pass";
+  passBtn.disabled = false;
   inputEl.focus();
 }
 
@@ -74,7 +74,7 @@ function handlePass() {
   streak = 0;
   updateStats();
   revealEl.innerHTML = `Code: <strong>${current.code}</strong> — ${current.name}`;
-  cardEl.classList.remove("flash-correct", "flash-wrong");
+  cardEl.classList.remove("flash-correct");
   cardEl.classList.add("flash-wrong");
   inputEl.disabled = true;
   passBtn.disabled = true;
@@ -88,7 +88,7 @@ function updateStats() {
 }
 
 function submitGuess() {
-  if (input.disabled) return;
+  if (inputEl.disabled) return;
   const guess = normalize(inputEl.value);
   if (!guess) return;
   if (guess === current.code) {
@@ -102,15 +102,15 @@ inputEl.addEventListener("keydown", (e) => {
   if (e.key === "Enter") submitGuess();
 });
 
-passBtn.addEventListener("click", () => {
-  if (!inputEl.disabled) handlePass();
-});
-
 inputEl.addEventListener("input", () => {
   inputEl.value = inputEl.value.replace(/\D/g, "");
 });
 
-const numpadEL = document.getElementById("numpad");
+passBtn.addEventListener("click", () => {
+  if (!inputEl.disabled) handlePass();
+});
+
+const numpadEl = document.getElementById("numpad");
 const numpadToggle = document.getElementById("numpad-toggle");
 
 numpadToggle.addEventListener("click", () => {
