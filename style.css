@@ -25,6 +25,7 @@ body {
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -34,7 +35,9 @@ header.site-head {
   align-items: baseline;
   justify-content: space-between;
   padding: 20px 24px;
+  padding-top: calc(20px + env(safe-area-inset-top, 0px));
   border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
 }
 
 header.site-head h1 {
@@ -43,7 +46,6 @@ header.site-head h1 {
     -apple-system,
     sans-serif;
   font-size: 1.3rem;
-  font-weight: 600;
   letter-spacing: -0.01em;
   margin: 0;
   color: var(--green);
@@ -64,10 +66,13 @@ header.site-head nav a:focus-visible {
 
 main {
   flex: 1;
+  min-height: 0;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 32px 20px 60px;
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
 }
 
 /* ---- Drill screen ---- */
@@ -168,6 +173,76 @@ main {
   color: var(--ink);
 }
 
+.numpad {
+  margin-top: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.numpad.hidden {
+  display: none;
+}
+
+.numpad-toggle {
+  margin-top: 16px;
+  align-self: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.numpad-toggle:hover,
+.numpad-toggle:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
+  outline: none;
+}
+
+.numpad-toggle.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.num-key {
+  padding: 16px 0;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.num-key:active {
+  background: var(--line);
+}
+
+.num-key--wide {
+  color: var(--muted);
+}
+
+.num-key--submit {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+  font-weight: 600;
+}
+
+.num-key--submit:active {
+  background: var(--green-bright);
+  border-color: var(--green-bright);
+}
+
 /* ---- Overview screen ---- */
 
 .overview-wrap {
@@ -225,4 +300,75 @@ main {
   font-size: 0.85rem;
   color: var(--muted);
   margin-top: 2px;
+}
+
+@media (max-width: 600px) {
+  header.site-head {
+    padding: 12px 16px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+
+  header.site-head h1 {
+    font-size: 1.05rem;
+  }
+
+  main {
+    padding: 14px 12px 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    justify-content: center;
+  }
+
+  .stats-bar {
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+  }
+
+  .card {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .produce-image {
+    aspect-ratio: auto;
+    height: 24vh;
+    height: 24dvh;
+    margin-bottom: 12px;
+  }
+
+  .guess-row {
+    gap: 8px;
+  }
+
+  #guess-input {
+    font-size: 1.1rem;
+    padding: 9px 12px;
+  }
+
+  #pass-btn {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+
+  .reveal {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    min-height: 1.1em;
+  }
+
+  .numpad-toggle {
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .numpad {
+    margin-top: 10px;
+    gap: 6px;
+  }
+
+  .num-key {
+    padding: 10px 0;
+    font-size: 1.05rem;
+  }
 }
