@@ -57,6 +57,7 @@ function handleCorrect() {
   cardEl.classList.remove("flash-wrong");
   cardEl.classList.add("flash-correct");
   inputEl.disabled = true;
+  passBtn.disabled = true;
   setTimeout(nextItem, 550);
 }
 
@@ -74,6 +75,7 @@ function handlePass() {
   updateStats();
   revealEl.innerHTML = `Code: <strong>${current.code}</strong> — ${current.name}`;
   cardEl.classList.remove("flash-correct", "flash-wrong");
+  cardEl.classList.add("flash-wrong");
   inputEl.disabled = true;
   passBtn.disabled = true;
   setTimeout(nextItem, 1200);
