@@ -106,7 +106,7 @@ main {
 
 .card.flash-correct {
   background: #eaf4e5;
-  border-color: var(--green-bright);
+  border-color: var(--red);
 }
 .card.flash-wrong {
   background: #f8e9e5;
@@ -142,7 +142,7 @@ main {
 
 #guess-input:focus {
   outline: none;
-  border-color: var(--green);
+  border-color: var(--red);
 }
 
 #pass-btn {
@@ -199,14 +199,14 @@ main {
 
 .numpad-toggle:hover,
 .numpad-toggle:focus-visible {
-  border-color: var(--green);
+  border-color: var(--red);
   color: var(--green);
   outline: none;
 }
 
 .numpad-toggle.active {
   background: var(--green);
-  border-color: var(--green);
+  border-color: var(--red);
   color: #fff;
 }
 
@@ -233,14 +233,14 @@ main {
 
 .num-key--submit {
   background: var(--green);
-  border-color: var(--green);
+  border-color: var(--red);
   color: #fff;
   font-weight: 600;
 }
 
 .num-key--submit:active {
-  background: var(--green-bright);
-  border-color: var(--green-bright);
+  background: var(--panel);
+  border-color: var(--red);
 }
 
 /* ---- Overview screen ---- */
@@ -261,7 +261,7 @@ main {
 
 .overview-search:focus {
   outline: none;
-  border-color: var(--green);
+  border-color: var(--red);
 }
 
 .item-grid {
@@ -315,29 +315,34 @@ main {
   main {
     padding: 14px 12px 20px;
     padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-    justify-content: center;
+    justify-content: stretch;
   }
 
   .stats-bar {
     gap: 16px;
     margin-bottom: 12px;
     font-size: 0.8rem;
+    flex-shrink: 0;
   }
 
   .card {
     width: 100%;
     padding: 14px;
+    flex: 1;
+    min-height: 0;
   }
-
   .produce-image {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: auto;
     aspect-ratio: auto;
-    height: 24vh;
-    height: 24dvh;
     margin-bottom: 12px;
   }
 
   .guess-row {
     gap: 8px;
+    flex-shrink: 0;
   }
 
   #guess-input {
@@ -354,17 +359,20 @@ main {
     margin-top: 8px;
     font-size: 0.85rem;
     min-height: 1.1em;
+    flex-shrink: 0;
   }
 
   .numpad-toggle {
     margin-top: 10px;
     padding: 6px 12px;
     font-size: 0.78rem;
+    flex-shrink: 0;
   }
 
   .numpad {
     margin-top: 10px;
     gap: 6px;
+    flex-shrink: 0;
   }
 
   .num-key {
