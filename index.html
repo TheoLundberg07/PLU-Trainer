@@ -1,37 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLU Trainer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="site-head">
-  <h1>PLU Trainer</h1>
-  <nav><a href="overview.html">Overview</a></nav>
-</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PLU Trainer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-head">
+      <h1>PLU Trainer</h1>
+      <nav><a href="overview.html">Overview</a></nav>
+    </header>
 
-<main>
-  <div class="stats-bar">
-    <span>Correct: <strong id="stat-correct">0</strong></span>
-    <span>Passed: <strong id="stat-pass">0</strong></span>
-    <span>Streak: <strong id="stat-streak">0</strong></span>
-  </div>
+    <main>
+      <div class="stats-bar">
+        <span>Correct: <strong id="stat-correct">0</strong></span>
+        <span>Passed: <strong id="stat-pass">0</strong></span>
+        <span>Streak: <strong id="stat-streak">0</strong></span>
+      </div>
 
-  <div class="card" id="card">
-    <img class="produce-image" id="produce-image" src="" alt="Produce item">
-    <div class="guess-row">
-      <input id="guess-input" type="text" inputmode="numeric" autocomplete="off" placeholder="PLU code" autofocus>
-      <button id="pass-btn" type="button">Pass</button>
-    </div>
-    <div class="reveal" id="reveal"></div>
-  </div>
-</main>
+      <div class="card" id="card">
+        <img
+          class="produce-image"
+          id="produce-image"
+          src=""
+          alt="Produce item"
+        />
+        <div class="guess-row">
+          <input
+            id="guess-input"
+            type="text"
+            inputmode="numeric"
+            autocomplete="off"
+            placeholder="PLU code"
+            autofocus
+          />
+          <button id="pass-btn" type="button">Pass</button>
+        </div>
+        <div class="reveal" id="reveal"></div>
 
-<script src="script.js"></script>
-</body>
+        <button type="button" id="numpad-toggle" class="numpad-toggle">
+          Show numpad
+        </button>
+
+        <div class="numpad hidden" id="numpad">
+          <button type="button" class="num-key" data-key="7">7</button>
+          <button type="button" class="num-key" data-key="8">8</button>
+          <button type="button" class="num-key" data-key="9">9</button>
+          <button type="button" class="num-key" data-key="4">4</button>
+          <button type="button" class="num-key" data-key="5">5</button>
+          <button type="button" class="num-key" data-key="6">6</button>
+          <button type="button" class="num-key" data-key="1">1</button>
+          <button type="button" class="num-key" data-key="2">2</button>
+          <button type="button" class="num-key" data-key="3">3</button>
+          <button type="button" class="num-key num-key--wide" data-key="back">
+            ⌫
+          </button>
+          <button type="button" class="num-key" data-key="0">0</button>
+          <button
+            type="button"
+            class="num-key num-key--submit"
+            data-key="submit"
+          >
+            ✓
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
