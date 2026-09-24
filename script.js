@@ -8,15 +8,15 @@ let correctCount = 0;
 let passCount = 0;
 let streak = 0;
 
-const imageEl = document.getElementById('produce-image');
-const inputEl = document.getElementById('guess-input');
-const passBtn = document.getElementById('pass-btn');
-const revealEl = document.getElementById('reveal');
-const cardEl = document.getElementById('card');
+const imageEl = document.getElementById("produce-image");
+const inputEl = document.getElementById("guess-input");
+const passBtn = document.getElementById("pass-btn");
+const revealEl = document.getElementById("reveal");
+const cardEl = document.getElementById("card");
 
-const statCorrect = document.getElementById('stat-correct');
-const statPass = document.getElementById('stat-pass');
-const statStreak = document.getElementById('stat-streak');
+const statCorrect = document.getElementById("stat-correct");
+const statPass = document.getElementById("stat-pass");
+const statStreak = document.getElementById("stat-streak");
 
 function shuffle(arr) {
   const copy = arr.slice();
@@ -37,25 +37,25 @@ function nextItem() {
   refillDeckIfEmpty();
   current = deck.pop();
   imageEl.src = `images/${current.image}`;
-  imageEl.alt = 'Guess the PLU code';
-  inputEl.value = '';
-  revealEl.textContent = '';
-  cardEl.classList.remove('flash-correct', 'flash-wrong');
+  imageEl.alt = "Guess the PLU code";
+  inputEl.value = "";
+  revealEl.textContent = "";
+  cardEl.classList.remove("flash-correct", "flash-wrong");
   inputEl.disabled = false;
-  passBtn.textContent = 'Pass';
+  passBtn.textContent = "Pass";
   inputEl.focus();
 }
 
 function normalize(code) {
-  return code.replace(/\D/g, '');
+  return code.replace(/\D/g, "");
 }
 
 function handleCorrect() {
   correctCount++;
   streak++;
   updateStats();
-  cardEl.classList.remove('flash-wrong');
-  cardEl.classList.add('flash-correct');
+  cardEl.classList.remove("flash-wrong");
+  cardEl.classList.add("flash-correct");
   inputEl.disabled = true;
   setTimeout(nextItem, 550);
 }
@@ -63,9 +63,9 @@ function handleCorrect() {
 function handleWrong() {
   streak = 0;
   updateStats();
-  cardEl.classList.remove('flash-correct');
-  cardEl.classList.add('flash-wrong');
-  inputEl.value = '';
+  cardEl.classList.remove("flash-correct");
+  cardEl.classList.add("flash-wrong");
+  inputEl.value = "";
 }
 
 function handlePass() {
@@ -73,9 +73,10 @@ function handlePass() {
   streak = 0;
   updateStats();
   revealEl.innerHTML = `Code: <strong>${current.code}</strong> — ${current.name}`;
-  cardEl.classList.remove('flash-correct', 'flash-wrong');
+  cardEl.classList.remove("flash-correct", "flash-wrong");
   inputEl.disabled = true;
-  passBtn.textContent = 'Next';
+  passBtn.disabled = true;
+  setTimeout(nextItem, 1200);
 }
 
 function updateStats() {
@@ -84,8 +85,8 @@ function updateStats() {
   statStreak.textContent = streak;
 }
 
-inputEl.addEventListener('keydown', (e) => {
-  if (e.key !== 'Enter') return;
+function submitGuess() {
+  if (input.disabled) return;
   const guess = normalize(inputEl.value);
   if (!guess) return;
   if (guess === current.code) {
@@ -93,22 +94,50 @@ inputEl.addEventListener('keydown', (e) => {
   } else {
     handleWrong();
   }
+}
+
+inputEl.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") submitGuess();
 });
 
-inputEl.addEventListener('input', () => {
-  inputEl.value = inputEl.value.replace(/\D/g, '');
+passBtn.addEventListener("click", () => {
+  if (!inputEl.disabled) handlePass();
 });
 
-passBtn.addEventListener('click', () => {
-  if (inputEl.disabled) {
-    // already passed/revealed for this item — move on
-    nextItem();
+inputEl.addEventListener("input", () => {
+  inputEl.value = inputEl.value.replace(/\D/g, "");
+});
+
+const numpadEL = document.getElementById("numpad");
+const numpadToggle = document.getElementById("numpad-toggle");
+
+numpadToggle.addEventListener("click", () => {
+  const isHidden = numpadEl.classList.toggle("hidden");
+  numpadToggle.classList.toggle("active", !isHidden);
+  numpadToggle.textContent = isHidden ? "Show numpad" : "Hide numpad";
+  // when the numpad is active, suppress the native mobile keyboard;
+  // when it's off, restore the normal numeric keyboard for typing
+  inputEl.setAttribute("inputmode", isHidden ? "numeric" : "none");
+  if (isHidden) inputEl.focus();
+});
+
+numpadEl.addEventListener("click", (e) => {
+  if (inputEl.disabled) return;
+  const btn = e.target.closest(".num-key");
+  if (!btn) return;
+  const key = btn.dataset.key;
+
+  if (key === "back") {
+    inputEl.value = inputEl.value.slice(0, -1);
+  } else if (key === "submit") {
+    submitGuess();
   } else {
-    handlePass();
+    inputEl.value += key;
   }
+  inputEl.focus();
 });
 
-fetch('data/plu.json')
+fetch("data/plu.json")
   .then((r) => r.json())
   .then((data) => {
     items = data;
@@ -116,6 +145,7 @@ fetch('data/plu.json')
     nextItem();
   })
   .catch((err) => {
-    revealEl.textContent = 'Could not load data/plu.json — check the file exists and is valid JSON.';
+    revealEl.textContent =
+      "Could not load data/plu.json — check the file exists and is valid JSON.";
     console.error(err);
   });
